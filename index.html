@@ -8,38 +8,31 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <div class="app-container">
-      <!-- Top Menu Bar -->
-      <div class="menu-bar">
-        <div class="menu-logo">Solace</div>
-        <div class="menu-items">
-          <span>File</span>
-          <span>Edit</span>
-          <span>View</span>
-          <span>Format</span>
-          <span>Help</span>
-        </div>
+    <div class="menu-bar">
+      <div class="menu-logo">Solace</div>
+      <div class="menu-items">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Window</span>
+        <span>Help</span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-item" data-page="home">🏠<span>Home</span></div>
+        <div class="sidebar-item" data-page="calendar">📅<span>Calendar</span></div>
+        <div class="sidebar-item" data-page="tasks">✅<span>Tasks</span></div>
+        <div class="sidebar-item" data-page="journal">📓<span>Journal</span></div>
+        <div class="sidebar-item" data-page="stats">📈<span>Stats</span></div>
       </div>
 
-      <!-- Left Sidebar -->
-      <div class="sidebar left">
-        <div class="sidebar-item" data-page="home">🏠 <span>Home</span></div>
-        <div class="sidebar-item" data-page="calendar">📅 <span>Calendar</span></div>
-        <div class="sidebar-item" data-page="tasks">✅ <span>Tasks</span></div>
-        <div class="sidebar-item" data-page="journal">📓 <span>Journal</span></div>
-        <div class="sidebar-item" data-page="stats">📈 <span>Stats</span></div>
-      </div>
-
-      <!-- Main Content -->
+      <!-- Main content -->
       <div class="main-content" id="page-content">
         <h1>Welcome to Solace</h1>
-        <p>Select a page from the sidebar to get started.</p>
-      </div>
-
-      <!-- Right Sidebar -->
-      <div class="sidebar right">
-        <div class="sidebar-item">⚙️</div>
-        <div class="sidebar-item">🔒</div>
+        <p>Select a section from the left sidebar.</p>
       </div>
     </div>
   </body>

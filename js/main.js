@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sidebarItems = document.querySelectorAll(".sidebar.left .sidebar-item");
-  const mainContent = document.getElementById("page-content");
+  const items = document.querySelectorAll(".sidebar-item");
+  const main = document.getElementById("page-content");
 
   const pages = {
-    home: "<h1>Welcome to Solace</h1><p>Select a page from the sidebar to get started.</p>",
-    calendar: "<h1>Calendar</h1><p>This will show your upcoming schedule and events.</p>",
-    tasks: "<h1>Tasks</h1><p>Your to-do list and priorities.</p>",
-    journal: "<h1>Journal</h1><p>Daily logs and notes go here.</p>",
-    stats: "<h1>Stats</h1><p>Productivity and burnout analytics.</p>",
+    home: "<h1>Welcome to Solace</h1><p>Select a section from the left sidebar.</p>",
+    calendar: "<h1>Calendar</h1><p>Plan your schedule here.</p>",
+    tasks: "<h1>Tasks</h1><p>Your prioritized tasks will appear here.</p>",
+    journal: "<h1>Journal</h1><p>Write reflections and mood logs.</p>",
+    stats: "<h1>Stats</h1><p>Track your workload and mood trends.</p>",
   };
 
-  sidebarItems.forEach(item => {
+  items.forEach((item) => {
     item.addEventListener("click", () => {
-      sidebarItems.forEach(i => i.classList.remove("active"));
+      items.forEach(i => i.classList.remove("active"));
       item.classList.add("active");
 
       const page = item.getAttribute("data-page");
-      mainContent.innerHTML = pages[page] || "<h1>Not found</h1>";
+      main.innerHTML = pages[page] || "<h1>Page Not Found</h1>";
     });
   });
 });

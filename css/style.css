@@ -1,4 +1,4 @@
-/* RESET + BASE */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -7,33 +7,22 @@
 
 body {
   background-color: #1e1f21;
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
   color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   height: 100vh;
   overflow: hidden;
 }
 
-.app-container {
-  display: grid;
-  grid-template-columns: 60px 1fr 60px;
-  grid-template-rows: 32px 1fr;
-  grid-template-areas:
-    "menu-bar menu-bar menu-bar"
-    "left main right";
-  height: 100vh;
-}
-
 /* MENU BAR */
 .menu-bar {
-  grid-area: menu-bar;
-  background-color: #000;
-  color: #fff;
+  height: 28px;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
+  color: #fff;
   font-size: 13px;
-  height: 32px;
 }
 
 .menu-logo {
@@ -42,67 +31,57 @@ body {
 }
 
 .menu-items span {
-  margin: 0 10px;
+  margin: 0 8px;
   cursor: pointer;
 }
 
-/* SIDE BARS */
+/* LAYOUT GRID */
+.layout {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  height: calc(100vh - 28px);
+}
+
+/* SIDEBAR */
 .sidebar {
   background-color: #2b2c2f;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10px;
-}
-
-.sidebar.left {
-  grid-area: left;
-  width: 60px;
-}
-
-.sidebar.right {
-  grid-area: right;
-  width: 60px;
+  padding-top: 16px;
+  gap: 16px;
 }
 
 .sidebar-item {
   width: 100%;
-  padding: 10px 0;
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   color: #ccc;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  white-space: nowrap;
 }
 
 .sidebar-item span {
-  font-size: 9px;
+  font-size: 10px;
   margin-top: 4px;
   color: #aaa;
 }
 
-.sidebar-item:hover {
+.sidebar-item:hover,
+.sidebar-item.active {
   background-color: #3a3b3f;
   color: #fff;
 }
 
-/* MAIN CONTENT */
-.main-content {
-  grid-area: main;
-  padding: 24px;
-  overflow-y: auto;
-}
-
-/* ACCENT COLORS */
-.sidebar-item.active,
-.sidebar-item:hover {
-  color: #5ea0ff;
-}
-
 .sidebar-item.active span {
   color: #5ea0ff;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  padding: 32px;
+  overflow-y: auto;
 }
