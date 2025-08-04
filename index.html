@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Solace</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script defer src="js/main.js"></script>
-  </head>
-  <body>
-    <div class="menu-bar">
-      <div class="menu-logo">Solace</div>
-      <div class="menu-items">
-        <span>File</span>
-        <span>Edit</span>
-        <span>View</span>
-        <span>Window</span>
-        <span>Help</span>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solace</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="menubar">
+    <div class="menubar-logo">🟤 Solace</div>
+    <div class="menubar-options">
+      <span>Edit</span>
+      <span>Undo</span>
+      <span>Redo</span>
+      <span>File</span>
+      <span>Format</span>
+      <span>Help</span>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Left Sidebar with Resizer -->
+    <div class="sidebar-left-container">
+      <aside class="sidebar-left">
+        <nav>
+          <button class="nav-item active" data-section="planner">📅 Planner</button>
+          <button class="nav-item" data-section="tasks">✅ Tasks</button>
+          <button class="nav-item" data-section="dashboard">📊 Dashboard</button>
+          <button class="nav-item" data-section="journal">📔 Journal</button>
+          <button class="nav-item disabled" disabled>💬 Peer Chat</button>
+        </nav>
+      </aside>
+      <div class="resizer" id="resizer-left"></div>
     </div>
 
-    <div class="layout">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="sidebar-item" data-page="home">🏠<span>Home</span></div>
-        <div class="sidebar-item" data-page="calendar">📅<span>Calendar</span></div>
-        <div class="sidebar-item" data-page="tasks">✅<span>Tasks</span></div>
-        <div class="sidebar-item" data-page="journal">📓<span>Journal</span></div>
-        <div class="sidebar-item" data-page="stats">📈<span>Stats</span></div>
-      </div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="planner" class="page-section active">Planner Content</section>
+      <section id="tasks" class="page-section">Tasks Content</section>
+      <section id="dashboard" class="page-section">Dashboard Content</section>
+      <section id="journal" class="page-section">Journal Content</section>
+    </main>
 
-      <!-- Main content -->
-      <div class="main-content" id="page-content">
-        <h1>Welcome to Solace</h1>
-        <p>Select a section from the left sidebar.</p>
-      </div>
-    </div>
-  </body>
+    <!-- Right Sidebar -->
+    <aside class="sidebar-right">
+      <ul class="sidebar-right-icons">
+        <li><button title="Login">👤</button></li>
+        <li><button title="Settings">⚙️</button></li>
+        <li><button title="Help">❓</button></li>
+      </ul>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
