@@ -2,54 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Solace – Minimalist Study Planner</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solace</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Solace</h1>
-    <p>Your personal anti-burnout study planner</p>
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">Solace</div>
+    <nav class="nav-tabs">
+      <button class="tab-link active" data-tab="planner">Planner</button>
+      <button class="tab-link" data-tab="dashboard">Dashboard</button>
+      <button class="tab-link" data-tab="mood">Mood Log</button>
+      <button class="tab-link" data-tab="journal">Journal</button>
+      <button class="tab-link disabled" disabled>Peer Chat</button>
+    </nav>
   </header>
 
-  <main>
-    <section id="quiz">
-      <h2>Welcome Quiz</h2>
-      <p>Answer a few questions to personalize your study plan.</p>
-      <button id="startQuizBtn">Start Quiz</button>
+  <!-- Main Content Area -->
+  <main class="tab-content">
+    <section id="planner" class="tab-panel active">
+      <h2>Planner</h2>
+      <button onclick="openModal('taskModal')">+ Add Task</button>
+      <!-- Task List Placeholder -->
+      <div class="card">Your tasks will appear here.</div>
     </section>
 
-    <section id="calendar">
-      <h2>Study Calendar</h2>
-      <div id="calendarView"></div>
-      <button id="addTaskBtn">Add Task</button>
+    <section id="dashboard" class="tab-panel">
+      <h2>Dashboard</h2>
+      <div class="card">Graphs and productivity data coming soon.</div>
     </section>
 
-    <section id="emotion-log">
-      <h2>Daily Mood Tracker</h2>
-      <label for="moodRange">How are you feeling today?</label>
-      <input type="range" id="moodRange" min="1" max="5" />
-      <button id="logMoodBtn">Log Mood</button>
+    <section id="mood" class="tab-panel">
+      <h2>Mood Log</h2>
+      <button onclick="openModal('moodModal')">+ Log Mood</button>
+      <div class="card">Mood entries will show here.</div>
     </section>
 
-    <section id="journal">
+    <section id="journal" class="tab-panel">
       <h2>Journal</h2>
-      <textarea id="journalEntry" placeholder="Write about your day..."></textarea>
-      <button id="saveJournalBtn">Save Entry</button>
-    </section>
-
-    <section id="insights">
-      <h2>Burnout Prediction (Beta)</h2>
-      <button id="predictBurnoutBtn">Predict Burnout Risk</button>
-      <p id="burnoutResult"></p>
+      <button onclick="openModal('journalModal')">+ New Entry</button>
+      <div class="card">Journal entries go here.</div>
     </section>
   </main>
 
-  <footer>
-    <p>All your data is stored locally for your privacy. Nothing is uploaded unless needed.</p>
-  </footer>
+  <!-- Modals -->
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('taskModal')">&times;</span>
+      <h3>Add Task</h3>
+      <input type="text" placeholder="Task name" />
+      <textarea placeholder="Details..."></textarea>
+      <button>Save</button>
+    </div>
+  </div>
 
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
+  <div id="moodModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('moodModal')">&times;</span>
+      <h3>Log Mood</h3>
+      <select>
+        <option>🙂 Good</option>
+        <option>😐 Okay</option>
+        <option>😞 Bad</option>
+      </select>
+      <button>Save</button>
+    </div>
+  </div>
+
+  <div id="journalModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('journalModal')">&times;</span>
+      <h3>New Journal Entry</h3>
+      <textarea placeholder="Write something..."></textarea>
+      <button>Save</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
 </body>
 </html>
