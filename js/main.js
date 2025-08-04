@@ -1,89 +1,60 @@
-// Wait for DOM to load before running scripts
-document.addEventListener("DOMContentLoaded", () => {
-  initializeLocalStorage();
-  loadMoodRange();
-  loadJournalEntries();
-  loadTaskList();
-  setupEventListeners();
+// main.js
+
+// Sidebar tab buttons
+const sidebarItems = document.querySelectorAll('.sidebar-item');
+// Content sections
+const sections = document.querySelectorAll('.content-section');
+
+// Modals
+const modals = document.querySelectorAll('.modal');
+
+sidebarItems.forEach(item => {
+  item.addEventListener('click', () => {
+    if(item.classList.contains('disabled')) return; // ignore disabled
+
+    // Remove active class from all buttons
+    sidebarItems.forEach(i => i.classList.remove('active'));
+    // Add active to clicked button
+    item.classList.add('active');
+
+    // Get section to show
+    const sectionToShow = item.dataset.section;
+
+    // Hide all sections
+    sections.forEach(sec => {
+      if(sec.id === sectionToShow){
+        sec.classList.add('active');
+      } else {
+        sec.classList.remove('active');
+      }
+    });
+  });
 });
 
-// Setup event listeners for buttons
-function setupEventListeners() {
-  document.querySelector("#quiz button").addEventListener("click", startQuiz);
-  document.querySelector("#emotion-log button").addEventListener("click", logMood);
-  document.querySelector("#journal button").addEventListener("click", saveJournal);
-  document.querySelector("#calendar button").addEventListener("click", addTask);
-  document.querySelector("#insights button").addEventListener("click", predictBurnout);
-}
-
-// Dummy startQuiz function (to expand later)
-function startQuiz() {
-  alert("Quiz feature coming soon!");
-}
-
-// Load mood range slider default to middle
-function loadMoodRange() {
-  const moodRange = document.getElementById("moodRange");
-  moodRange.value = 3; // neutral mood by default
-}
-
-// Log mood to localStorage
-function logMood() {
-  const moodRange = document.getElementById("moodRange");
-  const moodValue = moodRange.value;
-  const today = new Date().toISOString().split("T")[0];
-
-  saveMoodLog(today, moodValue);
-  alert(`Mood logged: ${moodValue} on ${today}`);
-}
-
-// Load and display journal entries (basic console log for now)
-function loadJournalEntries() {
-  const { journalEntries } = loadAllUserData();
-  console.log("Journal Entries:", journalEntries);
-}
-
-// Save journal entry
-function saveJournal() {
-  const textArea = document.getElementById("journalEntry");
-  const text = textArea.value.trim();
-  if (text === "") {
-    alert("Please write something before saving.");
-    return;
+// Open modal by id
+window.openModal = function(id) {
+  const modal = document.getElementById(id);
+  if(modal){
+    modal.style.display = 'flex';
+    // Optional: focus first input inside modal
+    const input = modal.querySelector('input, textarea, select, button');
+    if(input) input.focus();
   }
-  const today = new Date().toISOString().split("T")[0];
-  saveJournalEntry(today, text);
-  alert("Journal entry saved!");
-  textArea.value = "";
-}
+};
 
-// Load task list (currently just logs it)
-function loadTaskList() {
-  const { taskList } = loadAllUserData();
-  console.log("Tasks:", taskList);
-}
+// Close modal by id
+window.closeModal = function(id) {
+  const modal = document.getElementById(id);
+  if(modal){
+    modal.style.display = 'none';
+  }
+};
 
-// Add a dummy task for now (expand UI later)
-function addTask() {
-  const title = prompt("Enter task title:");
-  if (!title) return alert("Task title is required.");
-  const dueDate = prompt("Enter due date (YYYY-MM-DD):");
-  if (!dueDate) return alert("Due date is required.");
-  const intensity = prompt("Enter intensity (1-5):");
-  const importance = prompt("Enter importance (1-5):");
-
-  const task = {
-    title,
-    dueDate,
-    intensity: Number(intensity) || 3,
-    importance: Number(importance) || 3,
-  };
-
-  saveTask(task);
-  alert("Task saved!");
-}
-
-// Dummy burnout prediction (to expand later)
-function predictBurnout() {
-  alert("Burnout prediction feature coming soon!");
-}
+// Close modal when clicking outside modal-content
+modals.forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+});
