@@ -44,26 +44,27 @@
           <button class="menubar-btn">Help</button>
           <button class="menubar-btn">Formatting</button>
         </nav>
+
       </header>
 
       <!-- Sections -->
-      <section id="planner" class="content-section active">
+      <section id="planner" class="content-section active" tabindex="0">
         <h2>Planner</h2>
         <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
         <div class="card placeholder">Your planner content here.</div>
       </section>
 
-      <section id="tasks" class="content-section">
+      <section id="tasks" class="content-section" tabindex="0">
         <h2>Tasks</h2>
         <div class="card placeholder">Your tasks list here.</div>
       </section>
 
-      <section id="dashboard" class="content-section">
+      <section id="dashboard" class="content-section" tabindex="0">
         <h2>Dashboard</h2>
         <div class="card placeholder">Dashboard charts & stats coming soon.</div>
       </section>
 
-      <section id="journal" class="content-section">
+      <section id="journal" class="content-section" tabindex="0">
         <h2>Journal</h2>
         <button class="btn-primary" onclick="openModal('journalModal')">+ New Entry</button>
         <div class="card placeholder">Your journal entries here.</div>
@@ -71,7 +72,7 @@
     </main>
 
     <!-- Right Sidebar -->
-    <aside class="right-sidebar">
+    <aside class="right-sidebar" aria-label="User options and settings">
       <ul class="right-sidebar-icons">
         <li><button aria-label="Login" title="Login">👤</button></li>
         <li><button aria-label="Settings" title="Settings">⚙️</button></li>
