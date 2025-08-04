@@ -1,106 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Solace</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <div class="app-container">
-    <!-- Left Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">SOLACE</div>
-      <nav class="sidebar-nav">
-        <button class="sidebar-item active" data-section="planner" aria-label="Planner">
-          📅 <span class="label">Planner</span>
-        </button>
-        <button class="sidebar-item" data-section="tasks" aria-label="Tasks">
-          ✅ <span class="label">Tasks</span>
-        </button>
-        <button class="sidebar-item" data-section="dashboard" aria-label="Dashboard">
-          📊 <span class="label">Dashboard</span>
-        </button>
-        <button class="sidebar-item" data-section="journal" aria-label="Journal">
-          📔 <span class="label">Journal</span>
-        </button>
-        <button class="sidebar-item disabled" disabled aria-label="Peer Chat (coming soon)">
-          💬 <span class="label">Peer Chat</span>
-        </button>
-      </nav>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Solace</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
       <!-- Top Menu Bar -->
-      <header class="menubar">
-        <div class="menubar-logo">SOLACE</div>
-        <nav class="menubar-nav">
-          <button class="menubar-btn">File</button>
-          <button class="menubar-btn">Edit</button>
-          <button class="menubar-btn">Undo</button>
-          <button class="menubar-btn">Redo</button>
-          <button class="menubar-btn">Help</button>
-          <button class="menubar-btn">Formatting</button>
-        </nav>
+      <div class="menu-bar">
+        <div class="menu-logo">Solace</div>
+        <div class="menu-items">
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>Format</span>
+          <span>Help</span>
+        </div>
+      </div>
 
-      </header>
+      <!-- Left Sidebar -->
+      <div class="sidebar left">
+        <div class="sidebar-item" data-page="home">🏠 <span>Home</span></div>
+        <div class="sidebar-item" data-page="calendar">📅 <span>Calendar</span></div>
+        <div class="sidebar-item" data-page="tasks">✅ <span>Tasks</span></div>
+        <div class="sidebar-item" data-page="journal">📓 <span>Journal</span></div>
+        <div class="sidebar-item" data-page="stats">📈 <span>Stats</span></div>
+      </div>
 
-      <!-- Sections -->
-      <section id="planner" class="content-section active" tabindex="0">
-        <h2>Planner</h2>
-        <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
-        <div class="card placeholder">Your planner content here.</div>
-      </section>
+      <!-- Main Content -->
+      <div class="main-content" id="page-content">
+        <h1>Welcome to Solace</h1>
+        <p>Select a page from the sidebar to get started.</p>
+      </div>
 
-      <section id="tasks" class="content-section" tabindex="0">
-        <h2>Tasks</h2>
-        <div class="card placeholder">Your tasks list here.</div>
-      </section>
-
-      <section id="dashboard" class="content-section" tabindex="0">
-        <h2>Dashboard</h2>
-        <div class="card placeholder">Dashboard charts & stats coming soon.</div>
-      </section>
-
-      <section id="journal" class="content-section" tabindex="0">
-        <h2>Journal</h2>
-        <button class="btn-primary" onclick="openModal('journalModal')">+ New Entry</button>
-        <div class="card placeholder">Your journal entries here.</div>
-      </section>
-    </main>
-
-    <!-- Right Sidebar -->
-    <aside class="right-sidebar" aria-label="User options and settings">
-      <ul class="right-sidebar-icons">
-        <li><button aria-label="Login" title="Login">👤</button></li>
-        <li><button aria-label="Settings" title="Settings">⚙️</button></li>
-        <li><button aria-label="Notifications" title="Notifications">🔔</button></li>
-      </ul>
-    </aside>
-  </div>
-
-  <!-- Modals -->
-  <div id="taskModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="taskModalTitle" tabindex="-1">
-    <div class="modal-content">
-      <button class="close" onclick="closeModal('taskModal')" aria-label="Close">&times;</button>
-      <h3 id="taskModalTitle">Add Task</h3>
-      <input type="text" placeholder="Task name" />
-      <textarea placeholder="Details..."></textarea>
-      <button>Save</button>
+      <!-- Right Sidebar -->
+      <div class="sidebar right">
+        <div class="sidebar-item">⚙️</div>
+        <div class="sidebar-item">🔒</div>
+      </div>
     </div>
-  </div>
-
-  <div id="journalModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="journalModalTitle" tabindex="-1">
-    <div class="modal-content">
-      <button class="close" onclick="closeModal('journalModal')" aria-label="Close">&times;</button>
-      <h3 id="journalModalTitle">New Journal Entry</h3>
-      <textarea placeholder="Write something..."></textarea>
-      <button>Save</button>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

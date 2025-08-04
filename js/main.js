@@ -1,48 +1,22 @@
-// Sidebar navigation: switch active section
-const sidebarItems = document.querySelectorAll('.sidebar-item');
-const contentSections = document.querySelectorAll('.content-section');
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebarItems = document.querySelectorAll(".sidebar.left .sidebar-item");
+  const mainContent = document.getElementById("page-content");
 
-sidebarItems.forEach(item => {
-  item.addEventListener('click', () => {
-    if (item.classList.contains('disabled')) return;
+  const pages = {
+    home: "<h1>Welcome to Solace</h1><p>Select a page from the sidebar to get started.</p>",
+    calendar: "<h1>Calendar</h1><p>This will show your upcoming schedule and events.</p>",
+    tasks: "<h1>Tasks</h1><p>Your to-do list and priorities.</p>",
+    journal: "<h1>Journal</h1><p>Daily logs and notes go here.</p>",
+    stats: "<h1>Stats</h1><p>Productivity and burnout analytics.</p>",
+  };
 
-    // Remove active from all buttons & sections
-    sidebarItems.forEach(i => i.classList.remove('active'));
-    contentSections.forEach(s => s.classList.remove('active'));
+  sidebarItems.forEach(item => {
+    item.addEventListener("click", () => {
+      sidebarItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
 
-    // Activate clicked button & matching section
-    item.classList.add('active');
-    const sectionId = item.getAttribute('data-section');
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.classList.add('active');
-      section.focus();
-    }
-  });
-});
-
-// Modal open/close
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.setAttribute('aria-hidden', 'false');
-    modal.style.display = 'flex';
-    modal.querySelector('input, textarea, button')?.focus();
-  }
-}
-
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.setAttribute('aria-hidden', 'true');
-    modal.style.display = 'none';
-  }
-}
-
-// Close modal on outside click
-window.addEventListener('click', e => {
-  const modals = document.querySelectorAll('.modal[aria-hidden="false"]');
-  modals.forEach(modal => {
-    if (e.target === modal) closeModal(modal.id);
+      const page = item.getAttribute("data-page");
+      mainContent.innerHTML = pages[page] || "<h1>Not found</h1>";
+    });
   });
 });
