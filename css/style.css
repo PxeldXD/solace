@@ -1,20 +1,45 @@
+/* Dark Theme Minimalist CSS for Solace */
+
+/* CSS Variables for easy theming */
+:root {
+  /* Dark theme colors */
+  --color-bg: #000000;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8E8E93;
+  --color-ui-bg: #1C1C1E;
+  --color-primary: #0A84FF;
+  --color-event-red: #FF453A;
+  --color-shadow: rgba(10, 132, 255, 0.3);
+  --color-white: #FFFFFF;
+
+  /* Typography & spacing */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --border-radius: 14px;
+  --spacing-base: 16px;
+}
+
 /* Reset and base styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f5f7fa;
-  color: #1c1c1e;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   line-height: 1.6;
-  padding: 30px 15px;
+  padding: calc(var(--spacing-base) * 2);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,21 +49,22 @@ body {
 /* Header */
 header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: calc(var(--spacing-base) * 2.5);
   max-width: 600px;
+  user-select: none;
 }
 
 header h1 {
   font-size: 3rem;
-  font-weight: 700;
-  color: #0a84ff;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
   margin-bottom: 8px;
 }
 
 header p {
   font-size: 1.25rem;
-  color: #636366;
-  font-weight: 400;
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
 }
 
 /* Main content wrapper */
@@ -47,44 +73,45 @@ main {
   max-width: 720px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: calc(var(--spacing-base) * 2);
 }
 
 /* Sections */
 section {
-  background: #fff;
-  border-radius: 20px;
-  padding: 25px 30px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-ui-bg);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing-base) * 1.5);
+  box-shadow: 0 6px 12px var(--color-shadow);
   transition: box-shadow 0.3s ease;
+  user-select: none;
 }
 
 section:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 24px rgba(10, 132, 255, 0.45);
 }
 
 section h2 {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #1c1c1e;
-  user-select: none;
+  margin-bottom: calc(var(--spacing-base) * 0.8);
+  color: var(--color-text-primary);
+  user-select: text;
 }
 
 /* Buttons */
 button {
   display: inline-block;
-  background: #0a84ff;
+  background-color: var(--color-primary);
   border: none;
-  border-radius: 14px;
-  color: white;
+  border-radius: var(--border-radius);
+  color: var(--color-white);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   padding: 12px 24px;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.25s ease;
-  box-shadow: 0 4px 8px rgba(10, 132, 255, 0.4);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 8px var(--color-shadow);
   margin-top: 12px;
 }
 
@@ -100,7 +127,7 @@ input[type="range"] {
   width: 100%;
   margin-top: 12px;
   cursor: pointer;
-  accent-color: #0a84ff;
+  accent-color: var(--color-primary);
 }
 
 /* Textarea */
@@ -108,25 +135,45 @@ textarea {
   width: 100%;
   min-height: 140px;
   margin-top: 12px;
-  border-radius: 14px;
-  border: 1.5px solid #d1d1d6;
+  border-radius: var(--border-radius);
+  border: 1.5px solid var(--color-text-secondary);
+  background-color: var(--color-bg);
   padding: 14px 16px;
   font-size: 1rem;
-  font-family: inherit;
+  font-family: var(--font-family-base);
+  color: var(--color-white);
   resize: vertical;
   transition: border-color 0.3s ease;
 }
 
+textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
 textarea:focus {
-  border-color: #0a84ff;
+  border-color: var(--color-primary);
   outline: none;
+  background-color: #121212;
+}
+
+/* Paragraphs and labels */
+p,
+label,
+textarea,
+input {
+  color: var(--color-white);
+}
+
+p.secondary,
+small {
+  color: var(--color-text-secondary);
 }
 
 /* Footer */
 footer {
-  margin-top: 50px;
+  margin-top: calc(var(--spacing-base) * 3);
   font-size: 0.875rem;
-  color: #86868b;
+  color: var(--color-text-secondary);
   user-select: none;
   max-width: 600px;
   text-align: center;
