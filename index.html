@@ -4,30 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Solace</title>
-  <!-- Google Font for Braun-style logo -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Top Menu Bar -->
-  <header class="top-menu-bar">
-    <nav>
-      <button class="menu-btn">File</button>
-      <button class="menu-btn">Edit</button>
-      <button class="menu-btn">Undo</button>
-      <button class="menu-btn">Redo</button>
-      <button class="menu-btn">Formatting</button>
-      <button class="menu-btn">Help</button>
-    </nav>
-  </header>
-
   <div class="app-container">
     <!-- Left Sidebar -->
-    <aside class="sidebar left-sidebar">
-      <div class="sidebar-header">
-        <h1 class="logo">solace</h1>
-      </div>
-      <nav class="sidebar-nav" role="navigation" aria-label="Primary">
+    <aside class="sidebar">
+      <div class="sidebar-header">SOLACE</div>
+      <nav class="sidebar-nav">
         <button class="sidebar-item active" data-section="planner" aria-label="Planner">
           📅 <span class="label">Planner</span>
         </button>
@@ -46,8 +31,22 @@
       </nav>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <main class="main-content">
+      <!-- Top Menu Bar -->
+      <header class="menubar">
+        <div class="menubar-logo">SOLACE</div>
+        <nav class="menubar-nav">
+          <button class="menubar-btn">File</button>
+          <button class="menubar-btn">Edit</button>
+          <button class="menubar-btn">Undo</button>
+          <button class="menubar-btn">Redo</button>
+          <button class="menubar-btn">Help</button>
+          <button class="menubar-btn">Formatting</button>
+        </nav>
+      </header>
+
+      <!-- Sections -->
       <section id="planner" class="content-section active">
         <h2>Planner</h2>
         <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
@@ -72,33 +71,31 @@
     </main>
 
     <!-- Right Sidebar -->
-    <aside class="sidebar right-sidebar" aria-label="User Controls">
-      <nav class="right-sidebar-nav" role="navigation" aria-label="User controls">
-        <ul>
-          <li><button class="icon-btn" aria-label="Login">🔑</button></li>
-          <li><button class="icon-btn" aria-label="Settings">⚙️</button></li>
-          <li><button class="icon-btn" aria-label="Profile">👤</button></li>
-        </ul>
-      </nav>
+    <aside class="right-sidebar">
+      <ul class="right-sidebar-icons">
+        <li><button aria-label="Login" title="Login">👤</button></li>
+        <li><button aria-label="Settings" title="Settings">⚙️</button></li>
+        <li><button aria-label="Notifications" title="Notifications">🔔</button></li>
+      </ul>
     </aside>
   </div>
 
   <!-- Modals -->
-  <div id="taskModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle" tabindex="-1">
+  <div id="taskModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="taskModalTitle" tabindex="-1">
     <div class="modal-content">
       <button class="close" onclick="closeModal('taskModal')" aria-label="Close">&times;</button>
       <h3 id="taskModalTitle">Add Task</h3>
-      <input type="text" placeholder="Task name" aria-label="Task name" />
-      <textarea placeholder="Details..." aria-label="Task details"></textarea>
+      <input type="text" placeholder="Task name" />
+      <textarea placeholder="Details..."></textarea>
       <button>Save</button>
     </div>
   </div>
 
-  <div id="journalModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="journalModalTitle" tabindex="-1">
+  <div id="journalModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="journalModalTitle" tabindex="-1">
     <div class="modal-content">
       <button class="close" onclick="closeModal('journalModal')" aria-label="Close">&times;</button>
       <h3 id="journalModalTitle">New Journal Entry</h3>
-      <textarea placeholder="Write something..." aria-label="Journal entry"></textarea>
+      <textarea placeholder="Write something..."></textarea>
       <button>Save</button>
     </div>
   </div>
