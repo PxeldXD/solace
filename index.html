@@ -4,54 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Solace</title>
-  <link rel="stylesheet" href="css/style.css" />
 
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="app-container">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" role="navigation" aria-label="Main sidebar navigation">
       <div class="sidebar-header">
         <h1>Solace</h1>
       </div>
       <nav class="sidebar-nav">
-        <button class="sidebar-item active" data-section="planner" aria-label="Planner">
+        <button class="sidebar-item active" data-section="planner" aria-label="Planner" type="button">
           📅 <span class="label">Planner</span>
         </button>
-        <button class="sidebar-item" data-section="tasks" aria-label="Tasks">
+        <button class="sidebar-item" data-section="tasks" aria-label="Tasks" type="button">
           ✅ <span class="label">Tasks</span>
         </button>
-        <button class="sidebar-item" data-section="dashboard" aria-label="Dashboard">
+        <button class="sidebar-item" data-section="dashboard" aria-label="Dashboard" type="button">
           📊 <span class="label">Dashboard</span>
         </button>
-        <button class="sidebar-item" data-section="journal" aria-label="Journal">
+        <button class="sidebar-item" data-section="journal" aria-label="Journal" type="button">
           📔 <span class="label">Journal</span>
         </button>
-        <button class="sidebar-item disabled" disabled aria-label="Peer Chat (coming soon)">
+        <button class="sidebar-item disabled" disabled aria-label="Peer Chat (coming soon)" type="button">
           💬 <span class="label">Peer Chat</span>
         </button>
       </nav>
     </aside>
 
     <!-- Main content -->
-    <main class="main-content">
-      <section id="planner" class="content-section active">
+    <main class="main-content" role="main">
+      <section id="planner" class="content-section active" tabindex="0">
         <h2>Planner</h2>
         <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
         <div class="card placeholder">Your planner content here.</div>
       </section>
 
-      <section id="tasks" class="content-section">
+      <section id="tasks" class="content-section" tabindex="0">
         <h2>Tasks</h2>
         <div class="card placeholder">Your tasks list here.</div>
       </section>
 
-      <section id="dashboard" class="content-section">
+      <section id="dashboard" class="content-section" tabindex="0">
         <h2>Dashboard</h2>
         <div class="card placeholder">Dashboard charts & stats coming soon.</div>
       </section>
 
-      <section id="journal" class="content-section">
+      <section id="journal" class="content-section" tabindex="0">
         <h2>Journal</h2>
         <button class="btn-primary" onclick="openModal('journalModal')">+ New Entry</button>
         <div class="card placeholder">Your journal entries here.</div>
@@ -60,24 +64,26 @@
   </div>
 
   <!-- Modals -->
-  <div id="taskModal" class="modal">
+  <div id="taskModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle" aria-hidden="true">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('taskModal')">&times;</span>
-      <h3>Add Task</h3>
-      <input type="text" placeholder="Task name" />
-      <textarea placeholder="Details..."></textarea>
-      <button>Save</button>
+      <button class="close" aria-label="Close modal" onclick="closeModal('taskModal')">&times;</button>
+      <h3 id="taskModalTitle">Add Task</h3>
+      <input type="text" placeholder="Task name" aria-label="Task name" />
+      <textarea placeholder="Details..." aria-label="Task details"></textarea>
+      <button class="btn-primary">Save</button>
     </div>
   </div>
 
-  <div id="journalModal" class="modal">
+  <div id="journalModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="journalModalTitle" aria-hidden="true">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('journalModal')">&times;</span>
-      <h3>New Journal Entry</h3>
-      <textarea placeholder="Write something..."></textarea>
-      <button>Save</button>
+      <button class="close" aria-label="Close modal" onclick="closeModal('journalModal')">&times;</button>
+      <h3 id="journalModalTitle">New Journal Entry</h3>
+      <textarea placeholder="Write something..." aria-label="Journal entry"></textarea>
+      <button class="btn-primary">Save</button>
     </div>
   </div>
+
+  <!-- Scripts -->
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 // main.js
 
-// Sidebar tab buttons
+// Log load to verify JS is running
+console.log("main.js loaded successfully");
+
+// Sidebar tab buttons & content sections
 const sidebarItems = document.querySelectorAll('.sidebar-item');
-// Content sections
 const sections = document.querySelectorAll('.content-section');
 
 // Modals
@@ -36,9 +38,10 @@ window.openModal = function(id) {
   const modal = document.getElementById(id);
   if(modal){
     modal.style.display = 'flex';
-    // Optional: focus first input inside modal
-    const input = modal.querySelector('input, textarea, select, button');
-    if(input) input.focus();
+    modal.setAttribute('aria-hidden', 'false');
+    // Focus first input or textarea inside modal
+    const focusElem = modal.querySelector('input, textarea, select, button');
+    if(focusElem) focusElem.focus();
   }
 };
 
@@ -47,14 +50,15 @@ window.closeModal = function(id) {
   const modal = document.getElementById(id);
   if(modal){
     modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
   }
 };
 
-// Close modal when clicking outside modal-content
+// Close modal when clicking outside modal content
 modals.forEach(modal => {
   modal.addEventListener('click', (e) => {
     if(e.target === modal) {
-      modal.style.display = 'none';
+      closeModal(modal.id);
     }
   });
 });
