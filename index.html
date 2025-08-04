@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solace – Anti-Burnout Study Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solace – Minimalist Study Planner</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -16,40 +16,39 @@
     <section id="quiz">
       <h2>Welcome Quiz</h2>
       <p>Answer a few questions to personalize your study plan.</p>
-      <button onclick="startQuiz()">Start Quiz</button>
+      <button id="startQuizBtn">Start Quiz</button>
     </section>
 
     <section id="calendar">
       <h2>Study Calendar</h2>
-      <div id="calendar-view"></div>
-      <button onclick="addTask()">Add Task</button>
+      <div id="calendarView"></div>
+      <button id="addTaskBtn">Add Task</button>
     </section>
 
     <section id="emotion-log">
       <h2>Daily Mood Tracker</h2>
-      <p>How are you feeling today?</p>
+      <label for="moodRange">How are you feeling today?</label>
       <input type="range" id="moodRange" min="1" max="5" />
-      <button onclick="logMood()">Log Mood</button>
+      <button id="logMoodBtn">Log Mood</button>
     </section>
 
     <section id="journal">
       <h2>Journal</h2>
       <textarea id="journalEntry" placeholder="Write about your day..."></textarea>
-      <button onclick="saveJournal()">Save Entry</button>
+      <button id="saveJournalBtn">Save Entry</button>
     </section>
 
     <section id="insights">
       <h2>Burnout Prediction (Beta)</h2>
-      <button onclick="predictBurnout()">Predict Burnout Risk</button>
-      <p id="burnoutResult">Loading...</p>
+      <button id="predictBurnoutBtn">Predict Burnout Risk</button>
+      <p id="burnoutResult"></p>
     </section>
   </main>
 
   <footer>
-    <p>All your data is stored locally for your privacy. Nothing is uploaded unless needed for processing.</p>
+    <p>All your data is stored locally for your privacy. Nothing is uploaded unless needed.</p>
   </footer>
 
-  <!-- JavaScript Files -->
   <script src="js/storage.js"></script>
   <script src="js/main.js"></script>
 </body>
