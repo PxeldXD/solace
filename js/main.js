@@ -1,36 +1,26 @@
-// Page Navigation
-document.querySelectorAll('.nav-item').forEach(button => {
-  button.addEventListener('click', () => {
-    if (button.classList.contains('disabled')) return;
+// Wait until the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const sectionButtons = document.querySelectorAll(".sidebar-item");
+  const sections = document.querySelectorAll(".content-section");
 
-    // Remove active class from all
-    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+  sectionButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-section");
 
-    // Add active class to current
-    button.classList.add('active');
-    const section = button.getAttribute('data-section');
-    document.getElementById(section).classList.add('active');
+      // Deactivate all sections
+      sections.forEach((section) => {
+        section.classList.remove("active");
+      });
+
+      // Activate selected section
+      const activeSection = document.getElementById(targetId);
+      if (activeSection) {
+        activeSection.classList.add("active");
+      }
+
+      // Highlight active button
+      sectionButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
   });
-});
-
-// Sidebar Resizing
-const resizer = document.getElementById('resizer-left');
-const sidebar = document.querySelector('.sidebar-left');
-let isResizing = false;
-
-resizer.addEventListener('mousedown', function (e) {
-  isResizing = true;
-  document.body.style.cursor = 'ew-resize';
-});
-
-document.addEventListener('mousemove', function (e) {
-  if (!isResizing) return;
-  const newWidth = Math.min(Math.max(e.clientX, 180), 400); // constrain width
-  sidebar.style.width = newWidth + 'px';
-});
-
-document.addEventListener('mouseup', function () {
-  isResizing = false;
-  document.body.style.cursor = 'default';
 });
