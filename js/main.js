@@ -1,64 +1,52 @@
-// main.js
+document.addEventListener('DOMContentLoaded', () => {
+  // Sidebar tab buttons
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
+  const contentSections = document.querySelectorAll('.content-section');
 
-// Log load to verify JS is running
-console.log("main.js loaded successfully");
+  sidebarItems.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.classList.contains('disabled')) return;
 
-// Sidebar tab buttons & content sections
-const sidebarItems = document.querySelectorAll('.sidebar-item');
-const sections = document.querySelectorAll('.content-section');
+      // Remove active from all buttons and sections
+      sidebarItems.forEach(btn => btn.classList.remove('active'));
+      contentSections.forEach(section => section.classList.remove('active'));
 
-// Modals
-const modals = document.querySelectorAll('.modal');
+      // Add active to clicked button
+      button.classList.add('active');
 
-sidebarItems.forEach(item => {
-  item.addEventListener('click', () => {
-    if(item.classList.contains('disabled')) return; // ignore disabled
-
-    // Remove active class from all buttons
-    sidebarItems.forEach(i => i.classList.remove('active'));
-    // Add active to clicked button
-    item.classList.add('active');
-
-    // Get section to show
-    const sectionToShow = item.dataset.section;
-
-    // Hide all sections
-    sections.forEach(sec => {
-      if(sec.id === sectionToShow){
-        sec.classList.add('active');
-      } else {
-        sec.classList.remove('active');
+      // Show corresponding section
+      const targetId = button.getAttribute('data-section');
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.classList.add('active');
       }
     });
   });
-});
 
-// Open modal by id
-window.openModal = function(id) {
-  const modal = document.getElementById(id);
-  if(modal){
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden', 'false');
-    // Focus first input or textarea inside modal
-    const focusElem = modal.querySelector('input, textarea, select, button');
-    if(focusElem) focusElem.focus();
-  }
-};
-
-// Close modal by id
-window.closeModal = function(id) {
-  const modal = document.getElementById(id);
-  if(modal){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-  }
-};
-
-// Close modal when clicking outside modal content
-modals.forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if(e.target === modal) {
-      closeModal(modal.id);
+  // Modal functions
+  window.openModal = function(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'flex';
+      // Optional: focus first input
+      const firstInput = modal.querySelector('input, textarea, button');
+      if (firstInput) firstInput.focus();
     }
+  };
+
+  window.closeModal = function(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  };
+
+  // Close modals if clicking outside modal content
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
   });
 });
