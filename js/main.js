@@ -1,52 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Sidebar tab buttons
-  const sidebarItems = document.querySelectorAll('.sidebar-item');
-  const contentSections = document.querySelectorAll('.content-section');
+// Wait for DOM content to load
+document.addEventListener("DOMContentLoaded", () => {
+  // Sidebar buttons for navigation
+  const sidebarButtons = document.querySelectorAll(".sidebar-item:not(.disabled)");
+  const sections = document.querySelectorAll(".content-section");
 
-  sidebarItems.forEach(button => {
-    button.addEventListener('click', () => {
-      if (button.classList.contains('disabled')) return;
+  sidebarButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active class from all buttons and sections
+      sidebarButtons.forEach((b) => b.classList.remove("active"));
+      sections.forEach((s) => s.classList.remove("active"));
 
-      // Remove active from all buttons and sections
-      sidebarItems.forEach(btn => btn.classList.remove('active'));
-      contentSections.forEach(section => section.classList.remove('active'));
+      // Add active class to clicked button and corresponding section
+      btn.classList.add("active");
+      const target = btn.getAttribute("data-section");
+      const targetSection = document.getElementById(target);
+      if (targetSection) targetSection.classList.add("active");
+    });
+  });
 
-      // Add active to clicked button
-      button.classList.add('active');
+  // Modal handling
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.style.display = "flex";
+      modal.setAttribute("aria-hidden", "false");
+      // Focus first input or textarea for accessibility
+      const focusable = modal.querySelector("input, textarea, button");
+      if (focusable) focusable.focus();
+    }
+  }
 
-      // Show corresponding section
-      const targetId = button.getAttribute('data-section');
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        targetSection.classList.add('active');
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  // Expose openModal and closeModal globally for inline onclick attributes
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  // Close modals when clicking outside modal content
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
       }
     });
   });
 
-  // Modal functions
-  window.openModal = function(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = 'flex';
-      // Optional: focus first input
-      const firstInput = modal.querySelector('input, textarea, button');
-      if (firstInput) firstInput.focus();
+  // Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modals.forEach((modal) => {
+        if (modal.style.display === "flex") {
+          modal.style.display = "none";
+          modal.setAttribute("aria-hidden", "true");
+        }
+      });
     }
-  };
-
-  window.closeModal = function(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = 'none';
-    }
-  };
-
-  // Close modals if clicking outside modal content
-  document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
   });
 });

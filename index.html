@@ -27,7 +27,7 @@
       <div class="sidebar-header">
         <h1 class="logo">solace</h1>
       </div>
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" role="navigation" aria-label="Primary">
         <button class="sidebar-item active" data-section="planner" aria-label="Planner">
           📅 <span class="label">Planner</span>
         </button>
@@ -73,30 +73,32 @@
 
     <!-- Right Sidebar -->
     <aside class="sidebar right-sidebar" aria-label="User Controls">
-      <nav class="right-sidebar-nav">
-        <button class="icon-btn" aria-label="Login">🔑</button>
-        <button class="icon-btn" aria-label="Settings">⚙️</button>
-        <button class="icon-btn" aria-label="Profile">👤</button>
+      <nav class="right-sidebar-nav" role="navigation" aria-label="User controls">
+        <ul>
+          <li><button class="icon-btn" aria-label="Login">🔑</button></li>
+          <li><button class="icon-btn" aria-label="Settings">⚙️</button></li>
+          <li><button class="icon-btn" aria-label="Profile">👤</button></li>
+        </ul>
       </nav>
     </aside>
   </div>
 
   <!-- Modals -->
-  <div id="taskModal" class="modal">
+  <div id="taskModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle" tabindex="-1">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('taskModal')">&times;</span>
-      <h3>Add Task</h3>
-      <input type="text" placeholder="Task name" />
-      <textarea placeholder="Details..."></textarea>
+      <button class="close" onclick="closeModal('taskModal')" aria-label="Close">&times;</button>
+      <h3 id="taskModalTitle">Add Task</h3>
+      <input type="text" placeholder="Task name" aria-label="Task name" />
+      <textarea placeholder="Details..." aria-label="Task details"></textarea>
       <button>Save</button>
     </div>
   </div>
 
-  <div id="journalModal" class="modal">
+  <div id="journalModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="journalModalTitle" tabindex="-1">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('journalModal')">&times;</span>
-      <h3>New Journal Entry</h3>
-      <textarea placeholder="Write something..."></textarea>
+      <button class="close" onclick="closeModal('journalModal')" aria-label="Close">&times;</button>
+      <h3 id="journalModalTitle">New Journal Entry</h3>
+      <textarea placeholder="Write something..." aria-label="Journal entry"></textarea>
       <button>Save</button>
     </div>
   </div>
