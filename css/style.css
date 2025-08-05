@@ -72,6 +72,9 @@ body {
 .sidebar-logo {
   margin: 0;
   color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .sidebar-nav {
@@ -79,8 +82,11 @@ body {
   margin: 0;
   list-style: none;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Updated sidebar items with SVG icon support and transitions */
 .sidebar-nav .sidebar-item {
   width: 100%;
   padding: 12px 20px;
@@ -93,7 +99,24 @@ body {
   font-family: 'Inter', sans-serif;
   display: flex;
   align-items: center;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s ease;
+}
+
+/* Accent color for buttons */
+.btn-primary {
+  background-color: #3b82f6; /* new blue shade */
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb; /* darker blue on hover */
 }
 
 .sidebar-nav .sidebar-item:hover {
@@ -105,11 +128,13 @@ body {
   color: #fff;
 }
 
+/* Disabled state */
 .sidebar-nav .sidebar-item.disabled {
   color: #666;
   cursor: not-allowed;
 }
 
+/* Active button press scale effect */
 .sidebar-nav .sidebar-item:active {
   transform: scale(0.98);
 }
@@ -125,49 +150,6 @@ body {
   background-color: #3c3c3c;
   border: 1px dashed #aaa;
   opacity: 0.6;
-}
-
-
-.sidebar-header {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.sidebar-logo {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-item {
-  background: none;
-  border: none;
-  color: #e0e0e0;
-  text-align: left;
-  font-size: 16px;
-  padding: 10px 8px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.2s;
-}
-
-.sidebar-item:hover {
-  background-color: #3a3a3a;
-}
-
-.sidebar-item.active {
-  background-color: #5050ff;
-  color: #fff;
-}
-
-.sidebar-item.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* Right Sidebar */
@@ -248,23 +230,6 @@ h2 {
   border: 1px solid #444;
 }
 
-/* Buttons */
-.btn-primary {
-  background-color: #007aff;
-  border: none;
-  color: #fff;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 15px;
-  transition: background 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: #005fcc;
-}
-
 /* Modal */
 .modal {
   display: none;
@@ -319,4 +284,28 @@ h2 {
   color: #aaa;
   font-size: 24px;
   cursor: pointer;
+}
+
+/* --- SVG ICONS FOR SIDEBAR BUTTONS --- */
+.sidebar-item .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+  transition: stroke 0.2s;
+}
+
+/* Sidebar item hover and active icon color changes */
+.sidebar-item:hover .icon,
+.sidebar-item.active .icon {
+  stroke: #60a5fa; /* lighter blue on hover and active */
+}
+
+/* Disabled state override */
+.sidebar-item.disabled {
+  color: #666666 !important;
+  cursor: not-allowed;
 }
