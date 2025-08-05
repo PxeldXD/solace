@@ -1,98 +1,161 @@
-/* style.css */
-
-/* Global Reset & Fonts */
+/* Base Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #101113;
-  color: #f1f1f1;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Top Menu Bar */
+/* Top Menu Bar (macOS style) */
 .menu-bar {
-  height: 32px;
   background-color: #000;
   color: #fff;
   display: flex;
   align-items: center;
+  height: 28px;
   padding: 0 12px;
   font-size: 13px;
-  justify-content: space-between;
 }
 
-.menu-left, .menu-right {
-  display: flex;
-  gap: 16px;
-}
-
-.menu-left span:first-child {
+.menu-logo {
   font-weight: bold;
-  font-size: 14px;
+  margin-right: 20px;
+  letter-spacing: 1px;
 }
 
-/* Layout */
+.menu-items span {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+/* App Container */
 .app-container {
-  display: flex;
   flex: 1;
-  overflow: hidden;
+  display: flex;
+  height: calc(100vh - 28px);
 }
 
-/* Sidebar Left */
+/* Left Sidebar */
 .sidebar-left {
+  background-color: #2b2b2b;
   width: 220px;
   min-width: 180px;
-  max-width: 320px;
-  background-color: #1a1a1a;
-  padding: 12px;
-  overflow-y: auto;
+  max-width: 300px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #444;
   resize: horizontal;
-  border-right: 1px solid #2c2c2c;
+  overflow: auto;
 }
 
 .sidebar-header {
-  font-size: 18px;
-  font-weight: 600;
   margin-bottom: 20px;
-  color: #fff;
+  text-align: center;
 }
 
-.sidebar-nav .sidebar-item {
+.sidebar-logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-item {
   background: none;
   border: none;
-  color: #ccc;
-  display: flex;
-  align-items: center;
-  padding: 10px 8px;
-  width: 100%;
+  color: #e0e0e0;
   text-align: left;
-  border-radius: 6px;
-  transition: 0.2s;
-  font-size: 14px;
+  font-size: 16px;
+  padding: 10px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
 }
 
-.sidebar-nav .sidebar-item:hover,
-.sidebar-nav .sidebar-item.active {
-  background-color: #2a2a2a;
+.sidebar-item:hover {
+  background-color: #3a3a3a;
+}
+
+.sidebar-item.active {
+  background-color: #5050ff;
   color: #fff;
 }
 
-.sidebar-nav .sidebar-item .label {
-  margin-left: 10px;
+.sidebar-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Right Sidebar */
+.sidebar-right {
+  background-color: #2b2b2b;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+  border-left: 1px solid #444;
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+  user-select: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #333;
+  border: 1px solid #555;
+  flex-direction: column;
+  min-width: 120px;
+  z-index: 100;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  color: #eee;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-menu button:hover {
+  background-color: #444;
 }
 
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 24px;
+  padding: 30px;
   overflow-y: auto;
+  background-color: #1e1e1e;
 }
 
 .content-section {
@@ -104,106 +167,86 @@ body {
 }
 
 h2 {
-  margin-bottom: 12px;
-}
-
-.btn-primary {
-  background-color: #007aff;
-  color: #fff;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-bottom: 12px;
-  transition: 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #005fd1;
+  font-size: 24px;
+  margin-bottom: 15px;
 }
 
 .card.placeholder {
-  background-color: #2a2a2a;
   padding: 20px;
-  border-radius: 10px;
-  margin-top: 10px;
-  color: #999;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #007aff;
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #005fcc;
 }
 
 /* Modal */
 .modal {
   display: none;
   position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: #1e1e1e;
+  background-color: #2c2c2c;
   padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 90%;
+  position: relative;
+  border: 1px solid #555;
 }
 
 .modal-content h3 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .modal-content input,
 .modal-content textarea {
   width: 100%;
-  margin-bottom: 10px;
   padding: 10px;
+  margin-bottom: 12px;
   border: none;
-  border-radius: 6px;
-  background-color: #2a2a2a;
-  color: #f1f1f1;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #555;
 }
 
 .modal-content button {
-  padding: 8px 14px;
   background-color: #007aff;
-  border: none;
   color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.close {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Sidebar Right */
-.sidebar-right {
-  width: 60px;
-  background-color: #1a1a1a;
-  border-left: 1px solid #2c2c2c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 12px;
-  gap: 20px;
-}
-
-.sidebar-right button {
-  background: none;
+  padding: 8px 12px;
   border: none;
-  color: #ccc;
-  font-size: 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.sidebar-right button:hover {
-  color: #fff;
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
 }

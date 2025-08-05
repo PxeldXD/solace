@@ -1,26 +1,59 @@
-// Wait until the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const sectionButtons = document.querySelectorAll(".sidebar-item");
-  const sections = document.querySelectorAll(".content-section");
+document.addEventListener('DOMContentLoaded', () => {
+  // Sidebar navigation logic
+  const sidebarButtons = document.querySelectorAll('.sidebar-item');
+  const sections = document.querySelectorAll('.content-section');
 
-  sectionButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const targetId = btn.getAttribute("data-section");
+  sidebarButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled || btn.classList.contains('disabled')) return;
 
-      // Deactivate all sections
-      sections.forEach((section) => {
-        section.classList.remove("active");
-      });
+      // Deactivate all buttons and hide all sections
+      sidebarButtons.forEach(b => b.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
 
-      // Activate selected section
-      const activeSection = document.getElementById(targetId);
-      if (activeSection) {
-        activeSection.classList.add("active");
+      // Activate clicked button and show corresponding section
+      btn.classList.add('active');
+      const sectionId = btn.getAttribute('data-section');
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) targetSection.classList.add('active');
+    });
+  });
+
+  // Dropdown toggle
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener('click', () => {
+      dropdownMenu.style.display =
+        dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+      dropdownMenu.style.flexDirection = 'column';
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.style.display = 'none';
       }
+    });
+  }
 
-      // Highlight active button
-      sectionButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+  // Modal open/close logic
+  window.openModal = function(id) {
+    const modal = document.getElementById(id);
+    if (modal) modal.style.display = 'flex';
+  };
+
+  window.closeModal = function(id) {
+    const modal = document.getElementById(id);
+    if (modal) modal.style.display = 'none';
+  };
+
+  // Close modal if clicking outside content
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
     });
   });
 });

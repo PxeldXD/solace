@@ -1,96 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solace</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script defer src="js/main.js"></script>
-  </head>
-  <body>
-    <!-- Top Menu Bar -->
-    <header class="menu-bar">
-      <div class="menu-logo">Solace</div>
-      <nav class="menu-options">
-        <span>Edit</span>
-        <span>Undo</span>
-        <span>Redo</span>
-        <span>Help</span>
-        <span>File</span>
-        <span>Format</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solace</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top Menu Bar -->
+  <div class="menu-bar">
+    <div class="menu-logo">SOLACE</div>
+    <div class="menu-items">
+      <span>File</span>
+      <span>Edit</span>
+      <span>View</span>
+      <span>Format</span>
+      <span>Help</span>
+    </div>
+  </div>
+
+  <!-- App Container -->
+  <div class="app-container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar-left">
+      <div class="sidebar-header">
+        <h1 class="sidebar-logo">SOLACE</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-item" data-section="planner">📅 Planner</button>
+        <button class="sidebar-item" data-section="tasks">✅ Tasks</button>
+        <button class="sidebar-item" data-section="dashboard">📊 Dashboard</button>
+        <button class="sidebar-item" data-section="journal">📔 Journal</button>
+        <button class="sidebar-item disabled" disabled>💬 Peer Chat</button>
       </nav>
-    </header>
+    </aside>
 
-    <div class="app-container">
-      <!-- Resizable Left Sidebar (Notion-style) -->
-      <aside class="sidebar" id="leftSidebar">
-        <div class="sidebar-header">
-          <h1>Solace</h1>
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="planner" class="content-section active">
+        <h2>Planner</h2>
+        <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
+        <div class="card placeholder">Your planner content here.</div>
+      </section>
+
+      <section id="tasks" class="content-section">
+        <h2>Tasks</h2>
+        <div class="card placeholder">Your task list will appear here.</div>
+      </section>
+
+      <section id="dashboard" class="content-section">
+        <h2>Dashboard</h2>
+        <div class="card placeholder">Dashboard and stats here.</div>
+      </section>
+
+      <section id="journal" class="content-section">
+        <h2>Journal</h2>
+        <button class="btn-primary" onclick="openModal('journalModal')">+ New Entry</button>
+        <div class="card placeholder">Your journal entries here.</div>
+      </section>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar-right">
+      <div class="dropdown">
+        <div class="dropdown-toggle">⚙️</div>
+        <div class="dropdown-menu">
+          <button>Login</button>
+          <button>Settings</button>
+          <button>Logout</button>
         </div>
-        <nav class="sidebar-nav">
-          <button class="sidebar-item active" data-section="planner">📅 Planner</button>
-          <button class="sidebar-item" data-section="tasks">✅ Tasks</button>
-          <button class="sidebar-item" data-section="dashboard">📊 Dashboard</button>
-          <button class="sidebar-item" data-section="journal">📔 Journal</button>
-          <button class="sidebar-item disabled" disabled>💬 Peer Chat</button>
-        </nav>
-        <div class="resizer" id="sidebarResizer"></div>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="main-content">
-        <section id="planner" class="content-section active">
-          <h2>Planner</h2>
-          <button class="btn-primary" onclick="openModal('taskModal')">+ Add Task</button>
-          <div class="card placeholder">Your planner content here.</div>
-        </section>
-
-        <section id="tasks" class="content-section">
-          <h2>Tasks</h2>
-          <div class="card placeholder">Your tasks list here.</div>
-        </section>
-
-        <section id="dashboard" class="content-section">
-          <h2>Dashboard</h2>
-          <div class="card placeholder">Dashboard charts & stats coming soon.</div>
-        </section>
-
-        <section id="journal" class="content-section">
-          <h2>Journal</h2>
-          <button class="btn-primary" onclick="openModal('journalModal')">+ New Entry</button>
-          <div class="card placeholder">Your journal entries here.</div>
-        </section>
-      </main>
-
-      <!-- Right Sidebar -->
-      <aside class="right-sidebar">
-        <ul>
-          <li><button title="Login">👤</button></li>
-          <li><button title="Settings">⚙️</button></li>
-          <li><button title="Notifications">🔔</button></li>
-        </ul>
-      </aside>
-    </div>
-
-    <!-- Task Modal -->
-    <div id="taskModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal('taskModal')">&times;</span>
-        <h3>Add Task</h3>
-        <input type="text" placeholder="Task name" />
-        <textarea placeholder="Details..."></textarea>
-        <button>Save</button>
       </div>
-    </div>
+    </aside>
+  </div>
 
-    <!-- Journal Modal -->
-    <div id="journalModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal('journalModal')">&times;</span>
-        <h3>New Journal Entry</h3>
-        <textarea placeholder="Write something..."></textarea>
-        <button>Save</button>
-      </div>
+  <!-- Modals -->
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('taskModal')">&times;</span>
+      <h3>Add Task</h3>
+      <input type="text" placeholder="Task name" />
+      <textarea placeholder="Details..."></textarea>
+      <button>Save</button>
     </div>
-  </body>
+  </div>
+
+  <div id="journalModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('journalModal')">&times;</span>
+      <h3>New Journal Entry</h3>
+      <textarea placeholder="Write something..."></textarea>
+      <button>Save</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
