@@ -45,14 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) container.appendChild(btn);
     });
   }
-});
 
   // Dropdown toggle
   const dropdownToggle = document.querySelector('.dropdown-toggle');
   const dropdownMenu = document.querySelector('.dropdown-menu');
 
   if (dropdownToggle && dropdownMenu) {
-    dropdownToggle.addEventListener('click', () => {
+    dropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent outside click from firing immediately
       dropdownMenu.style.display =
         dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
       dropdownMenu.style.flexDirection = 'column';
