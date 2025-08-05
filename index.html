@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solace</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
   <!-- Top Menu Bar -->
@@ -21,19 +22,22 @@
 
   <!-- App Container -->
   <div class="app-container">
-    <!-- Left Sidebar -->
-    <aside class="sidebar-left">
-      <div class="sidebar-header">
-        <h1 class="sidebar-logo">SOLACE</h1>
-      </div>
-      <nav class="sidebar-nav">
-        <button class="sidebar-item" data-section="planner">📅 Planner</button>
-        <button class="sidebar-item" data-section="tasks">✅ Tasks</button>
-        <button class="sidebar-item" data-section="dashboard">📊 Dashboard</button>
-        <button class="sidebar-item" data-section="journal">📔 Journal</button>
-        <button class="sidebar-item disabled" disabled>💬 Peer Chat</button>
-      </nav>
-    </aside>
+		<!-- Left Sidebar -->
+	<aside class="sidebar-left">
+	  <div class="sidebar-header">
+		<h1 class="sidebar-logo">SOLACE</h1>
+	  </div>
+	  <nav class="sidebar-nav">
+		<div class="sidebar-items" id="sidebar-sortable">
+		  <button class="sidebar-item" data-section="planner">📅 Planner</button>
+		  <button class="sidebar-item" data-section="tasks">✅ Tasks</button>
+		  <button class="sidebar-item" data-section="dashboard">📊 Dashboard</button>
+		  <button class="sidebar-item" data-section="journal">📔 Journal</button>
+		  <button class="sidebar-item disabled" disabled data-section="peerchat">💬 Peer Chat</button>
+		</div>
+	  </nav>
+	</aside>
+
 
     <!-- Main Content -->
     <main class="main-content">
